@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+  <link th:replace="fragments/base :: bootstrap">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/default.css}" />
+  <title>Add Book</title>
+</head>
+<body>
+<div th:replace="fragments/base :: header"></div>
+<main class="form-lr w-100 m-auto">
+  <form th:action="@{/admin/book}" method="POST" th:object="${book}">
+    <h1 class="h3 mb-3 fw-normal text-light text-center">Add New Book</h1>
+    <div>
+      <p th:if = "${#fields.hasGlobalErrors()}" th:each = "err : ${#fields.globalErrors()}" th:text="${err}"></p>
+    </div>
+    <div class="form-floating">
+      <input type="text" class="my-3 form-control text-secondary" required id="floatingInputTitle" placeholder="title"
+             th:field="${book.title}"><span th:if="${#fields.hasErrors('title')}" th:errors="${book.title}" th:style="'color:red'"></span>
+      <label for="floatingInputTitle">Title</label>
+    </div>
+    <div class="form-floating">
+      <input type="text" class="my-3 form-control text-secondary" id="floatingInputYear" placeholder="Year"
+             th:field="${book.year}"><span th:if="${#fields.hasErrors('year')}" th:errors="${book.year}" th:style="'color:red'"></span>
+      <label for="floatingInputYear">Year </label>
+    </div>
+    <button class="btn btn-outline-light w-100 py-2 my-3" type="submit">Confirm</button>
+  </form>
+</main>
+</body>
+</html>

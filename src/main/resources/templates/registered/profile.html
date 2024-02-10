@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+  <link th:replace="fragments/base :: bootstrap">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/default.css}" />
+  <title>Profile</title>
+</head>
+<body>
+<div th:replace="fragments/base :: header"></div>
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <div class="row"><h1 class="text-light" th:text="${globalUser.name} + ' ' + ${globalUser.surname}"></h1></div>
+      <div class="row"><span class="text-secondary" th:text="${globalUser.email}"></span></div>
+      <div class="row">
+        <form class="" th:action="@{/registered/saveProfileImage}" method="POST" enctype="multipart/form-data">
+          <label class="cursor-pointer text-light" for="modifyImage">
+            <img class="w-50 img-fluid my-2 rounded-5 border border-2 border-primary px-0 shadow z-0 hover-dark" th:src= "${globalUser.getPicPath()}"/>
+          </label>
+          <input class="opacity-0 position-absolute" id="modifyImage" name="image" type="file" accept="image/*" onchange="form.submit()">
+        </form>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="row">
+        <h4 class="col-auto text-light">Read List</h4>
+      </div>
+      <div class="row">
+        <div th:if="${globalUser.readList}">
+          <ul class="list-group">
+            <li class="list-group-item bg-dark" th:each = "book : ${globalUser.readList}">
+              <a class="anchor-link link-light link-opacity-50 link-opacity-100-hover link-underline-opacity-0"
+                 th:href = "@{'/book/' + ${book.id}}"
+                 th:text = "${book.title} + ' '">
+                <span class="mx-3 text-secondary" th:text = "${book.year}"></span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

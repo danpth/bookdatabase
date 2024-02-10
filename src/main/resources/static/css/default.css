@@ -1,0 +1,45 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    background-color:#212529;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+h1 {
+    color: whitesmoke;
+}
+.h-7{
+    height: 7%;
+}
+.h-93{
+    height: 93%;
+}
+.w-99{
+    width: 99%!important;
+}
+.w-fit-content{
+    width: fit-content;
+}
+.h-fit-content{
+    height: fit-content;
+}
+.gradient-red-dark{
+    background-image: linear-gradient(to left bottom, #eb3a09, #bc2216, #8d0f17, #5f0311, #340000);
+    }
+.cursor-pointer{
+    cursor: pointer;
+}
+
+.place-content-center{
+    place-content: center;
+}
+
+.hover-dark:hover{
+    opacity: 70%;
+}
+.form-lr {
+    max-width: 330px;
+    padding: 1rem;
+}

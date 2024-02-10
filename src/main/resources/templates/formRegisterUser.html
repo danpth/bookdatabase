@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+  <link th:replace="fragments/base :: bootstrap">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/default.css}" />
+  <title>Login</title>
+</head>
+<body>
+<div th:replace="fragments/base :: header"></div>
+<main class="form-lr w-100 m-auto">
+  <form th:action="@{/register}" method="POST">
+    <h1 class="h3 mb-3 fw-normal text-light text-center">Register New User</h1>
+
+    <div th:if="${#fields.hasErrors('user')} or ${#fields.hasErrors('credentials')}">
+      <ul class="list-group-flush">
+        <li class="list-group-item text-light" th:each="error : ${#fields.errors('user')}" th:text="${error}">
+          Error message
+        </li>
+        <li class="list-group-item text-light" th:each="error : ${#fields.errors('credentials')}" th:text="${error}">
+          Error message
+        </li>
+      </ul>
+    </div>
+    <div class="form-floating">
+      <input type="text" class="my-3 form-control text-secondary" required id="floatingInputName" placeholder="name"
+             th:field="${user.name}"><span th:if="${#fields.hasErrors('user.name')}" th:errors="${user.name}" th:style="'color:red'"></span>
+      <label for="floatingInputName">Name</label>
+    </div>
+    <div class="form-floating">
+      <input type="text" class="my-3 form-control text-secondary" required id="floatingInputSurname" placeholder="surname"
+             th:field="${user.surname}"><span th:if="${#fields.hasErrors('user.surname')}" th:errors="${user.surname}" th:style="'color:red'"></span>
+      <label for="floatingInputSurname">Surname</label>
+    </div>
+    <div class="form-floating">
+      <input type="email" class="my-3 form-control text-secondary" required id="floatingInputEmail" placeholder="gino@gino.gino"
+             th:field="${user.email}"><span th:if="${#fields.hasErrors('user.email')}" th:errors="${user.email}" th:style="'color:red'"></span>
+      <label for="floatingInputEmail">Email</label>
+    </div>
+    <div class="form-floating">
+      <input type="text" class="my-3 form-control text-secondary" required id="floatingInputUsername" placeholder="username"
+             th:field="${credentials.username}"><span th:if="${#fields.hasErrors('credentials.username')}" th:errors="${credentials.username}" th:style="'color:red'"></span>
+      <label for="floatingInputUsername">Username</label>
+    </div>
+    <div class="form-floating">
+      <input type="password" class="my-3 form-control text-secondary" required id="floatingInputPass" placeholder="password"
+             th:field="${credentials.password}"><span th:if="${#fields.hasErrors('credentials.password')}" th:errors="${credentials.password}" th:style="'color:red'"></span>
+      <label for="floatingInputPass">Password</label>
+    </div>
+    <button class="btn btn-outline-light w-100 py-2 my-3" type="submit">Register</button>
+  </form>
+</main>
+</body>
+</html>

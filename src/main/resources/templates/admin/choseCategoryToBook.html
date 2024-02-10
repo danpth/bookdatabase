@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <link th:replace="fragments/base :: bootstrap">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/default.css}" />
+    <title>Add Authors</title>
+</head>
+<body>
+<div th:replace="fragments/base :: header"></div>
+<h1 class="mx-3" th:text = "${book.title}"></h1>
+<div class="text-light mx-5" th:if = "${book.categories}">Current categories:
+    <ul class="list-group px-5 mx-auto">
+        <li th:each="c:${book.categories}">
+            <a class="link-underline-opacity-0 link-light"
+               th:href = "@{'/admin/removeCategoryFromBook/' + ${book.id} + '/' + ${c}}"
+               th:text="${c}">
+            </a>
+        </li>
+    </ul>
+</div>
+<div><a class="mx-5 link-light link-opacity-50 link-opacity-100-hover link-underline-opacity-0 border border-light rounded-2"
+        th:href="@{'/admin/book/' + ${book.id}}"> DONE </a></div>
+<ul class="list-group px-5 mx-auto">
+    <input type="hidden" id="bookId" th:value="${book.id}" />
+    <label for="inputText">Enter a string:</label>
+    <input class="col-3" type="text" id="inputText" th:field="${inputText}" onkeyup="updateLink()" />
+
+    <!-- Display the link dynamically -->
+    <div>
+        <a class="mx-5 link-light link-opacity-50 link-opacity-100-hover link-underline-opacity-0 border border-light rounded-2"
+           id="generatedLink" th:href="@{${link}+${book.id}}">Add Category</a>
+    </div>
+    <script>
+        function updateLink() {
+            var inputText = document.getElementById("inputText").value;
+            var linkElement = document.getElementById("generatedLink");
+            var bookId = document.getElementById("bookId").value;
+            if (inputText) {
+                var link = "/admin/addCategoryToBook/" + inputText +"/"+ bookId;
+                linkElement.href = link;
+                linkElement.style.display = "inline"; // Show the link
+            } else {
+                linkElement.style.display = "none"; // Hide the link if there's no input
+            }
+        }
+    </script>
+</ul>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+  <link th:replace="fragments/base :: bootstrap">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/default.css}" />
+  <title>Review Movie</title>
+</head>
+<body>
+<div th:replace="fragments/base :: header"></div>
+<main class="form-lr w-100 m-auto">
+  <form th:action="@{'/registered/review/' +${book_id}}" method="POST" th:object="${review}">
+    <h1 class="h3 mb-3 fw-normal text-light text-center">Add New Review</h1>
+    <div>
+      <p th:if = "${#fields.hasGlobalErrors()}" th:each = "err : ${#fields.globalErrors()}" th:text="${err}"></p>
+    </div>
+    <div class="form-floating">
+      <input type="text" class="my-3 form-control text-secondary" required id="floatingInputTitle" placeholder="title"
+             th:field="${review.title}"><span th:if="${#fields.hasErrors('title')}" th:errors="${review.title}" th:style="'color:red'"></span>
+      <label for="floatingInputTitle">Title</label>
+    </div>
+    <div class="form-floating">
+      <input type="text" class="my-3 form-control text-secondary" id="floatingInputContent" placeholder="Content"
+             th:field="${review.content}"><span th:if="${#fields.hasErrors('content')}" th:errors="${review.content}" th:style="'color:red'"></span>
+      <label for="floatingInputContent">Content</label>
+    </div>
+    <div class="form-floating">
+      <input type="number" class="my-3 form-control text-secondary" required id="floatingInputScore" placeholder="Score"
+             th:field="${review.score}"><span th:if="${#fields.hasErrors('score')}" th:errors="${review.score}" th:style="'color:red'"></span>
+      <label for="floatingInputScore">Score (-/10) </label>
+    </div>
+    <button class="btn btn-outline-light w-100 py-2 my-3" type="submit">Confirm</button>
+  </form>
+</main>
+</body>
+</html>

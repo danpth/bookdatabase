@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <link th:replace="fragments/base :: bootstrap">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/default.css}" />
+    <title>Add Authors</title>
+</head>
+<body>
+<div th:replace="fragments/base :: header"></div>
+<h1 class="mx-3" th:text = "${book.title}"></h1>
+<div class="text-light mx-5" th:if = "${book.author}">Current author:
+    <ul class="list-group px-5 mx-auto">
+            <a class="link-underline-opacity-0 link-light"
+               th:href = "@{'/admin/removeAuthorFromBook/' + ${book.id} + '/' + ${book.author.id}}">
+                <div class="ms-2 me-auto">
+                    <div class="fw-bold" th:text="${book.author.name}+ ' ' + ${book.author.surname}">Nome Cognome</div>
+                    <div th:text="${book.author.dateOfBirthFormatted}">dob</div>
+                </div>
+            </a>
+    </ul>
+</div>
+<div><a class="mx-5 link-light link-opacity-50 link-opacity-100-hover link-underline-opacity-0 border border-light rounded-2"
+        th:href="@{'/admin/book/' + ${book.id}}"> DONE </a></div>
+<ul class="list-group px-5 mx-auto">
+    <li th:each="author : ${authors}" class="bg-dark list-group-item d-flex justify-content-between align-items-start">
+        <a class="link-underline-opacity-0 link-light"
+           th:href = "@{'/admin/setAuthorToBook/' + ${book.id} + '/' + ${author.id}}">
+            <div class="ms-2 me-auto">
+                <div class="fw-bold" th:text="${author.name}+ ' ' + ${author.surname}">Nome Cognome</div>
+                <div th:text="${author.dateOfBirthFormatted}">dob</div>
+            </div>
+        </a>
+    </li>
+</ul>
+</body>
+</html>

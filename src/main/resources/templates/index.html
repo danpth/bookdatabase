@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <link th:replace="fragments/base :: bootstrap">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/default.css}" />
+    <title>Books Database</title>
+</head>
+<body>
+<div th:replace="fragments/base :: header"></div>
+<div class="container px-5 my-4 py-5 h-75 w-fit-content gradient-red-dark rounded-5 border border-light">
+    <div class="row h-100 mx-sm-5">
+        <div class="my-auto py-3 d-flex flex-column aligns-items-center justify-content-center">
+            <div class="row">
+                <h1 class="p-2 text-center">Books Archive</h1>
+            </div>
+            <div class="row w-99 my-1 justify-content-center align-self-center">
+                <button type = "button" class="p-2 text-center btn btn-outline-light"
+                        onclick="location.href='/book'">Books</button>
+            </div>
+            <div class="row w-99 my-1 justify-content-center align-self-center">
+                <button type = "button" class="p-2 text-center btn btn-outline-light"
+                        onclick="location.href='/author'">Authors</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

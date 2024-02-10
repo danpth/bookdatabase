@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <link th:replace="fragments/base :: bootstrap">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/default.css}" />
+    <title>Author</title>
+</head>
+<body>
+<div th:replace="fragments/base :: header"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <div class="row"><h1 class="text-light" th:text="${author.name}+ ' ' + ${author.surname}"></h1></div>
+            <div class="row"><span class="text-secondary" th:text="${author.dateOfBirthFormatted}"></span></div>
+        </div>
+        <div class="col-6">
+            <div class="row">
+                <h4 class="col-auto text-light">Written Books</h4>
+            </div>
+            <div class="row">
+                <div th:if="${author.writtenBooks}">
+                    <ul class="list-group">
+                        <li class="list-group-item bg-dark" th:each = "book : ${author.writtenBooks}">
+                            <a class="anchor-link link-light link-opacity-50 link-opacity-100-hover link-underline-opacity-0"
+                               th:href = "@{'/book/' + ${book.id}}"
+                               th:text = "${book.title} + ' '">
+                                <span class="mx-3 text-secondary" th:text = "${book.year}"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
